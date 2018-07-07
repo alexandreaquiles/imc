@@ -1,0 +1,8 @@
+<label>Peso <input type="number" [(ngModel)]="peso"/> kg</label><br/>
+<label>Altura <input type="number" [(ngModel)]="altura"/> m</label><br/>
+<button (click)="calculaImc()">Calcular IMC</button>
+<div *ngIf="exibeResultados">
+  <hr/>
+  <div>IMC: <span>{{ imc | number:'1.2-2' }}</span></div>
+  <div>Situação: <span>{{ situacao }}</span></div>
+</div>
