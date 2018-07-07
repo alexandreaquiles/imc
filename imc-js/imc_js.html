@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <label>Peso <input type="number" id="peso"/> kg</label><br/>
+  <label>Altura <input type="number" id="altura"/> m</label><br/>
+  <button id="botao">Calcular IMC</button>
+  <div id="resultado">
+  </div>
+  <script>
+    document.querySelector('#botao').addEventListener('click', function () {
+      var peso = document.querySelector('#peso').value;
+      var altura = document.querySelector('#altura').value;
+
+      var imc = peso / (altura * altura);
+      if (isNaN(imc)) {
+        return;
+      }
+
+      var situacao;
+      if (imc < 18.5) {
+          situacao = 'Abaixo do peso';
+      } else if (imc >= 18.5 && imc < 25) {
+        situacao = 'Peso normal';
+      } else if (imc >= 25) {
+        situacao = 'Acima do peso';
+      }
+
+      var hr = document.createElement('hr');
+
+      var divIMC = document.createElement('div');
+      divIMC.textContent = 'IMC: ';
+      var spanIMC = document.createElement('span');
+      spanIMC.textContent = imc.toFixed(2);
+      divIMC.appendChild(spanIMC);
+
+      var divSituacao = document.createElement('div');
+      divSituacao.textContent = 'Situação: ';
+      var spanSituacao = document.createElement('span');
+      spanSituacao.textContent = situacao;
+      divSituacao.appendChild(spanSituacao);
+
+      var divResultado = document.querySelector('#resultado');
+      if (divResultado.hasChildNodes()) {
+        while (divResultado.lastChild) {
+          divResultado.removeChild(divResultado.lastChild);
+        }
+      }
+      divResultado.appendChild(hr);
+      divResultado.appendChild(divIMC);
+      divResultado.appendChild(divSituacao);
+    });
+  </script>
+</body>
+</html>
