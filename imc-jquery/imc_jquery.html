@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <label>Peso <input type="number" id="peso"/> kg</label><br/>
+  <label>Altura <input type="number" id="altura"/> m</label><br/>
+  <button id="botao">Calcular IMC</button>
+  <div id="resultado">
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script>
+    $('#botao').click(function () {
+      var peso = $('#peso').val();
+      var altura = $('#altura').val();
+
+      var imc = peso / (altura * altura);
+      if (isNaN(imc)) {
+        return;
+      }
+
+      var situacao;
+      if (imc < 18.5) {
+          situacao = 'Abaixo do peso';
+      } else if (imc >= 18.5 && imc < 25) {
+        situacao = 'Peso normal';
+      } else if (imc >= 25) {
+        situacao = 'Acima do peso';
+      }
+
+      var spanIMC = $('<span>').text(imc.toFixed(2));
+      var divIMC = $('<div>').text('IMC: ').append(spanIMC);
+
+      var spanSituacao =  $('<span>').text(situacao);
+      var divSituacao = $('<div>').text('Situação: ').append(spanSituacao);
+
+      $('#resultado').empty().append('<hr>').append(divIMC).append(divSituacao);
+    });
+  </script>
+</body>
+</html>
